@@ -142,16 +142,14 @@
             padding: 30px;
             box-shadow: 0 10px 40px rgba(0, 255, 0, 0.1);
             backdrop-filter: blur(10px);
+            display: block;
         }
 
         .chart-placeholder {
             background: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
-            padding: 40px;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0;
+            min-height: 500px;
             border: 1px solid rgba(0, 255, 0, 0.3);
         }
 
@@ -269,35 +267,19 @@
                 caDisplay.style.display = 'block';
                 caAddress.textContent = CONTRACT_ADDRESS;
                 
-                // Here you would integrate with a real charting service
-                // Options:
-                // 1. DexScreener embed
-                // 2. GeckoTerminal embed
-                // 3. Pump.fun's own chart if they provide embeds
-                // 4. Custom chart using Chart.js with DEX API data
-                
+                // DexScreener embed
                 chartPlaceholder.innerHTML = `
-                    <div style="text-align: center; color: #00ff00;">
-                        <p style="margin-bottom: 20px; font-size: 1.2rem;">
-                            Pump.Drop Live Chart
-                        </p>
-                        <p style="font-size: 0.9rem; opacity: 0.7;">
-                            To display live chart, add one of:<br><br>
-                            • DexScreener iframe embed<br>
-                            • Pump.fun chart embed<br>
-                            • GeckoTerminal widget<br>
-                            • Custom Chart.js with live data
-                        </p>
-                    </div>
+                    <iframe 
+                        src="https://dexscreener.com/solana/${CONTRACT_ADDRESS}?embed=1&theme=dark&trades=0&info=0" 
+                        style="width: 100%; height: 500px; border: 0; border-radius: 10px;"
+                    ></iframe>
                 `;
             }
         }
         
         // Auto-load chart on page load if CA is configured
-        window.addEventListener('load', () => {
-            if (CONTRACT_ADDRESS) {
-                loadChart();
-            }
+        window.addEventListener('DOMContentLoaded', () => {
+            loadChart();
         });
     </script>
 </body>
