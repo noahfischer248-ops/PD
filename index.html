@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pump.Drop - Pump Fun Airdrop</title>
+    <title>$JAYLON - The Legend on Pump.Fun</title>
     <style>
         * {
             margin: 0;
@@ -56,22 +56,59 @@
 
         .container {
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             position: relative;
             z-index: 10;
         }
 
-        .logo {
-            font-size: 5rem;
+        /* Jaylon Image Section */
+        .jaylon-image-container {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .jaylon-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid #00ff00;
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.5);
+            animation: pulse 2s infinite;
+            object-fit: cover;
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-size: 1.5rem;
             font-weight: bold;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(0, 255, 0, 0.8), 0 0 90px rgba(0, 255, 0, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            }
+        }
+
+        .logo {
+            font-size: 6rem;
+            font-weight: 900;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #00ff00 0%, #00cc00 50%, #00ff00 100%);
+            background: linear-gradient(45deg, #00ff00 0%, #ffff00 50%, #00ff00 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
             animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 5px;
         }
 
         @keyframes glow {
@@ -79,35 +116,68 @@
                 text-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
             }
             to {
-                text-shadow: 0 0 40px rgba(0, 255, 0, 0.8), 0 0 50px rgba(0, 255, 0, 0.6);
+                text-shadow: 0 0 40px rgba(0, 255, 0, 0.8), 0 0 60px rgba(255, 255, 0, 0.6);
             }
         }
 
         .tagline {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            color: #00ff00;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffff00;
             text-transform: uppercase;
             letter-spacing: 3px;
-            opacity: 0.9;
+            animation: flash 1.5s infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #00ff00;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            padding: 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
         }
 
         .buy-button {
-            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            background: linear-gradient(135deg, #ffff00 0%, #00ff00 100%);
             border: none;
             color: black;
-            padding: 20px 60px;
-            font-size: 1.8rem;
-            font-weight: bold;
+            padding: 25px 70px;
+            font-size: 2rem;
+            font-weight: 900;
             border-radius: 50px;
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="0" y="28" font-size="28">💰</text></svg>'), pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 255, 0, 0.4);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 40px;
             position: relative;
             overflow: hidden;
+            animation: buttonPulse 2s infinite;
+        }
+
+        @keyframes buttonPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         .buy-button:before {
@@ -117,7 +187,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transition: left 0.5s ease;
         }
 
@@ -126,59 +196,94 @@
         }
 
         .buy-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.6);
-            background: linear-gradient(135deg, #00ff00 0%, #00ff88 100%);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 255, 0, 0.6);
+            background: linear-gradient(135deg, #00ff00 0%, #ffff00 100%);
         }
 
         .buy-button:active {
-            transform: translateY(0) scale(1);
+            transform: translateY(0) scale(1.05);
         }
 
         .chart-container {
             background: rgba(0, 255, 0, 0.05);
-            border: 2px solid rgba(0, 255, 0, 0.2);
+            border: 3px solid rgba(255, 255, 0, 0.3);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 40px rgba(0, 255, 0, 0.1);
+            box-shadow: 0 10px 40px rgba(255, 255, 0, 0.2);
             backdrop-filter: blur(10px);
-            display: block;
         }
 
         .chart-placeholder {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             padding: 0;
             min-height: 500px;
-            border: 1px solid rgba(0, 255, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 0, 0.4);
+            overflow: hidden;
         }
 
         .chart-message {
-            font-size: 1.1rem;
-            color: #00ff00;
-            opacity: 0.8;
+            font-size: 1.2rem;
+            color: #ffff00;
+            font-weight: bold;
         }
 
         .ca-display {
             margin-top: 20px;
             padding: 15px;
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid rgba(0, 255, 0, 0.3);
+            background: rgba(255, 255, 0, 0.1);
+            border: 2px solid rgba(255, 255, 0, 0.4);
             border-radius: 10px;
             font-family: monospace;
             font-size: 0.9rem;
-            color: #00ff00;
+            color: #ffff00;
             word-break: break-all;
+        }
+
+        .jaylon-says {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 0, 0.2);
+            padding: 15px 25px;
+            border-radius: 20px;
+            border: 2px solid #ffff00;
+            color: #ffff00;
+            font-weight: bold;
+            animation: float 3s ease-in-out infinite;
+            z-index: 100;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         @media (max-width: 600px) {
             .logo {
-                font-size: 3.5rem;
+                font-size: 4rem;
+            }
+            
+            .jaylon-image {
+                width: 200px;
+                height: 200px;
             }
             
             .buy-button {
-                padding: 15px 40px;
-                font-size: 1.4rem;
+                padding: 20px 50px;
+                font-size: 1.5rem;
+            }
+            
+            .jaylon-says {
+                display: none;
             }
         }
     </style>
@@ -188,35 +293,52 @@
     <div class="money-rain" id="moneyRain"></div>
 
     <div class="container">
-        <h1 class="logo">Pump.Drop</h1>
-        <p class="tagline">Pump Fun Airdrop Representative</p>
+        <!-- Jaylon Character Image -->
+        <div class="jaylon-image-container">
+            <div class="jaylon-image" id="jaylonImage">
+                JAYLON
+            </div>
+        </div>
+
+        <h1 class="logo">$JAYLON</h1>
+        <p class="tagline">The Legend Has Arrived</p>
+        
+        <div class="description">
+            Meet JAYLON - The most legendary character to hit Pump.Fun. 
+            When Jaylon enters the chat, bags get heavier and charts go greener. 
+            This isn't just another token, this is the JAYLON movement.
+        </div>
         
         <button class="buy-button" onclick="handleBuyClick()">
-            Buy Pump.Drop
+            BUY $JAYLON
         </button>
         
         <div class="chart-container">
             <div class="chart-placeholder" id="chartPlaceholder">
-                <div class="chart-message" style="padding: 40px; display: flex; align-items: center; justify-content: center; min-height: 500px;">
-                    <p style="color: #00ff00; font-size: 1.2rem;">Loading DexScreener Chart...</p>
+                <div class="chart-message">
+                    <p>$JAYLON LIVE CHART</p>
                 </div>
             </div>
-            <div class="ca-display" id="caDisplay" style="display: none;">
-                CA: <span id="caAddress">Not Set</span>
+            <div class="ca-display">
+                CA: <span id="caAddress">8h1medfkQDtySnxAxrhYVZcxryPvsx9uZfKF2sPkpump</span>
             </div>
         </div>
     </div>
 
+    <div class="jaylon-says">
+        "LET'S GET THIS MONEY!" - Jaylon
+    </div>
+
     <script>
         // CONFIGURATION - Update these when you have your contract address
-        const CONTRACT_ADDRESS = "8h1medfkQDtySnxAxrhYVZcxryPvsx9uZfKF2sPkpump"; // Enter your CA here
+        const CONTRACT_ADDRESS = ""; // Enter your CA here
         const PUMP_FUN_URL = "https://pump.fun/coin/8h1medfkQDtySnxAxrhYVZcxryPvsx9uZfKF2sPkpump"; // Will be set as: https://pump.fun/coin/YOUR_CA_HERE
         
         // Create raining money bags
         function createMoneyRain() {
             const moneyRain = document.getElementById('moneyRain');
             
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 25; i++) {
                 const moneyBag = document.createElement('div');
                 moneyBag.className = 'money-bag';
                 moneyBag.innerHTML = '💰';
@@ -245,73 +367,81 @@
                 moneyBag.style.fontSize = (Math.random() * 20 + 20) + 'px';
                 moneyRain.appendChild(moneyBag);
             }
-        }, 1000);
+        }, 800);
         
         function handleBuyClick() {
-            if (CONTRACT_ADDRESS) {
-                // Redirect to pump.fun with the token
-                window.open(`https://pump.fun/coin/${CONTRACT_ADDRESS}`, '_blank');
-            } else {
-                alert('Contract address not yet configured. Please wait for CA.');
-            }
+            // Redirect to pump.fun with the token
+            window.open(PUMP_FUN_URL, '_blank');
         }
         
-        // Function to load chart when CA is provided
-        function loadChart() {
-            if (CONTRACT_ADDRESS) {
-                const chartPlaceholder = document.getElementById('chartPlaceholder');
-                const caDisplay = document.getElementById('caDisplay');
-                const caAddress = document.getElementById('caAddress');
-                
-                // Show the CA
-                caDisplay.style.display = 'block';
-                caAddress.textContent = CONTRACT_ADDRESS;
-                
-                // DexScreener embed - try iframe first
-                chartPlaceholder.innerHTML = `
-                    <iframe 
-                        id="dexChart"
-                        src="https://dexscreener.com/solana/${CONTRACT_ADDRESS}?embed=1&theme=dark&trades=0&info=0" 
-                        style="width: 100%; height: 500px; border: 0; border-radius: 10px;"
-                        onload="this.style.opacity='1'"
-                        onerror="loadChartFallback()"
-                    ></iframe>
-                `;
-                
-                // Add fallback after a delay to check if iframe loaded
-                setTimeout(() => {
-                    const iframe = document.getElementById('dexChart');
-                    if (!iframe || !iframe.contentWindow) {
-                        loadChartFallback();
-                    }
-                }, 3000);
-            }
-        }
-        
-        // Fallback if iframe doesn't work
-        function loadChartFallback() {
+        // Try to load the Jaylon image if it exists
+        window.addEventListener('load', () => {
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('jaylonImage').innerHTML = '';
+                document.getElementById('jaylonImage').style.backgroundImage = `url('/mnt/user-data/uploads/blackalon.png')`;
+                document.getElementById('jaylonImage').style.backgroundSize = 'cover';
+                document.getElementById('jaylonImage').style.backgroundPosition = 'center';
+            };
+            img.onerror = function() {
+                // Image not found, keep the text placeholder
+                console.log('Blackalon.png not found - please upload the image');
+            };
+            img.src = '/mnt/user-data/uploads/blackalon.png';
+            
+            // Load DexScreener chart embed
             const chartPlaceholder = document.getElementById('chartPlaceholder');
+            // DexScreener embed for Solana token
             chartPlaceholder.innerHTML = `
-                <div style="padding: 40px; text-align: center;">
-                    <p style="color: #00ff00; font-size: 1.3rem; margin-bottom: 20px;">
-                        Pump.Drop Live Chart
-                    </p>
-                    <a href="https://dexscreener.com/solana/${CONTRACT_ADDRESS}" 
-                       target="_blank" 
-                       style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%); color: black; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 1.1rem; cursor: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 32 32\"><text x=\"0\" y=\"28\" font-size=\"28\">💰</text></svg>'), pointer;">
-                        View Live Chart on DexScreener
-                    </a>
-                    <p style="color: #00ff00; opacity: 0.7; margin-top: 20px; font-size: 0.9rem;">
-                        Click above to see real-time price, volume, and trading data
-                    </p>
-                </div>
+                <iframe 
+                    id="dexscreener-embed" 
+                    src="https://dexscreener.com/solana/${CONTRACT_ADDRESS}?embed=1&theme=dark&trades=0&info=0" 
+                    style="width: 100%; height: 500px; border: none; border-radius: 10px;"
+                    allowfullscreen>
+                </iframe>
             `;
-        }
-        
-        // Auto-load chart on page load if CA is configured
-        window.addEventListener('DOMContentLoaded', () => {
-            loadChart();
+            
+            // Fallback in case iframe doesn't load
+            setTimeout(() => {
+                const iframe = document.getElementById('dexscreener-embed');
+                if (!iframe || iframe.contentWindow.length === 0) {
+                    chartPlaceholder.innerHTML = `
+                        <div style="text-align: center; color: #ffff00;">
+                            <p style="margin-bottom: 20px; font-size: 1.5rem; font-weight: bold;">
+                                $JAYLON CHART
+                            </p>
+                            <p style="font-size: 1rem; opacity: 0.9;">
+                                View on DexScreener:<br>
+                                <a href="https://dexscreener.com/solana/${CONTRACT_ADDRESS}" 
+                                   target="_blank" 
+                                   style="color: #00ff00; text-decoration: underline;">
+                                    Open Chart
+                                </a>
+                            </p>
+                        </div>
+                    `;
+                }
+            }, 5000);
         });
+        
+        // Rotate Jaylon quotes
+        const quotes = [
+            '"LET\'S GET THIS MONEY!" - Jaylon',
+            '"PUMP IT UP!" - Jaylon',
+            '"JAYLON SEASON!" - Jaylon',
+            '"BAGS SECURED!" - Jaylon',
+            '"TO THE MOON!" - Jaylon',
+            '"DIAMOND HANDS!" - Jaylon'
+        ];
+        
+        let quoteIndex = 0;
+        setInterval(() => {
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            const jaylonSays = document.querySelector('.jaylon-says');
+            if (jaylonSays) {
+                jaylonSays.textContent = quotes[quoteIndex];
+            }
+        }, 3000);
     </script>
 </body>
 </html>
