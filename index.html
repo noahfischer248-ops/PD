@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pump.Drop - Pump Fun Airdrop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="0" y="28" font-size="28">💰</text></svg>'), auto;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Money bag rain animation */
+        .money-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .money-bag {
+            position: absolute;
+            font-size: 30px;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100px) rotate(0deg);
+            }
+            to {
+                transform: translateY(calc(100vh + 100px)) rotate(360deg);
+            }
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00ff00 0%, #00cc00 50%, #00ff00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 40px rgba(0, 255, 0, 0.8), 0 0 50px rgba(0, 255, 0, 0.6);
+            }
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.9;
+        }
+
+        .buy-button {
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            border: none;
+            color: black;
+            padding: 20px 60px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="0" y="28" font-size="28">💰</text></svg>'), pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .buy-button:hover:before {
+            left: 100%;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 0, 0.6);
+            background: linear-gradient(135deg, #00ff00 0%, #00ff88 100%);
+        }
+
+        .buy-button:active {
+            transform: translateY(0) scale(1);
+        }
+
+        .chart-container {
+            background: rgba(0, 255, 0, 0.05);
+            border: 2px solid rgba(0, 255, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 255, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .chart-placeholder {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 40px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .chart-message {
+            font-size: 1.1rem;
+            color: #00ff00;
+            opacity: 0.8;
+        }
+
+        .ca-display {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #00ff00;
+            word-break: break-all;
+        }
+
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 3.5rem;
+            }
+            
+            .buy-button {
+                padding: 15px 40px;
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Money rain effect -->
+    <div class="money-rain" id="moneyRain"></div>
+
+    <div class="container">
+        <h1 class="logo">Pump.Drop</h1>
+        <p class="tagline">Pump Fun Airdrop Representative</p>
+        
+        <button class="buy-button" onclick="handleBuyClick()">
+            Buy Pump.Drop
+        </button>
+        
+        <div class="chart-container">
+            <div class="chart-placeholder" id="chartPlaceholder">
+                <div class="chart-message">
+                    <p>Chart will load here when CA is configured</p>
+                </div>
+            </div>
+            <div class="ca-display" id="caDisplay" style="display: none;">
+                CA: <span id="caAddress">Not Set</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURATION - Update these when you have your contract address
+        const CONTRACT_ADDRESS = ""; // Enter your CA here
+        const PUMP_FUN_URL = ""; // Will be set as: https://pump.fun/coin/YOUR_CA_HERE
+        
+        // Create raining money bags
+        function createMoneyRain() {
+            const moneyRain = document.getElementById('moneyRain');
+            
+            for (let i = 0; i < 20; i++) {
+                const moneyBag = document.createElement('div');
+                moneyBag.className = 'money-bag';
+                moneyBag.innerHTML = '💰';
+                moneyBag.style.left = Math.random() * 100 + '%';
+                moneyBag.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                moneyBag.style.animationDelay = Math.random() * 5 + 's';
+                moneyBag.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                moneyRain.appendChild(moneyBag);
+            }
+        }
+        
+        // Initialize money rain
+        createMoneyRain();
+        
+        // Regenerate money bags periodically for continuous effect
+        setInterval(() => {
+            const moneyRain = document.getElementById('moneyRain');
+            const firstBag = moneyRain.firstElementChild;
+            if (firstBag) {
+                moneyRain.removeChild(firstBag);
+                const moneyBag = document.createElement('div');
+                moneyBag.className = 'money-bag';
+                moneyBag.innerHTML = '💰';
+                moneyBag.style.left = Math.random() * 100 + '%';
+                moneyBag.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                moneyBag.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                moneyRain.appendChild(moneyBag);
+            }
+        }, 1000);
+        
+        function handleBuyClick() {
+            if (CONTRACT_ADDRESS) {
+                // Redirect to pump.fun with the token
+                window.open(`https://pump.fun/coin/${CONTRACT_ADDRESS}`, '_blank');
+            } else {
+                alert('Contract address not yet configured. Please wait for CA.');
+            }
+        }
+        
+        // Function to load chart when CA is provided
+        function loadChart() {
+            if (CONTRACT_ADDRESS) {
+                const chartPlaceholder = document.getElementById('chartPlaceholder');
+                const caDisplay = document.getElementById('caDisplay');
+                const caAddress = document.getElementById('caAddress');
+                
+                // Show the CA
+                caDisplay.style.display = 'block';
+                caAddress.textContent = CONTRACT_ADDRESS;
+                
+                // Here you would integrate with a real charting service
+                // Options:
+                // 1. DexScreener embed
+                // 2. GeckoTerminal embed
+                // 3. Pump.fun's own chart if they provide embeds
+                // 4. Custom chart using Chart.js with DEX API data
+                
+                chartPlaceholder.innerHTML = `
+                    <div style="text-align: center; color: #00ff00;">
+                        <p style="margin-bottom: 20px; font-size: 1.2rem;">
+                            Pump.Drop Live Chart
+                        </p>
+                        <p style="font-size: 0.9rem; opacity: 0.7;">
+                            To display live chart, add one of:<br><br>
+                            • DexScreener iframe embed<br>
+                            • Pump.fun chart embed<br>
+                            • GeckoTerminal widget<br>
+                            • Custom Chart.js with live data
+                        </p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Auto-load chart on page load if CA is configured
+        window.addEventListener('load', () => {
+            if (CONTRACT_ADDRESS) {
+                loadChart();
+            }
+        });
+    </script>
+</body>
+</html>
