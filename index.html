@@ -85,6 +85,10 @@
             font-size: 1.5rem;
             font-weight: bold;
         }
+        
+        img.jaylon-image {
+            display: block;
+        }
 
         @keyframes pulse {
             0% {
@@ -295,9 +299,8 @@
     <div class="container">
         <!-- Jaylon Character Image -->
         <div class="jaylon-image-container">
-            <div class="jaylon-image" id="jaylonImage">
-                JAYLON
-            </div>
+            <img src="blackalon.png" alt="Jaylon" class="jaylon-image" id="jaylonImage" onerror="this.style.display='none'; document.getElementById('jaylonFallback').style.display='flex';">
+            <div class="jaylon-image" id="jaylonFallback" style="display: none;">JAYLON</div>
         </div>
 
         <h1 class="logo">$JAYLON</h1>
@@ -331,7 +334,7 @@
 
     <script>
         // CONFIGURATION - Update these when you have your contract address
-        const CONTRACT_ADDRESS = ""; // Enter your CA here
+        const CONTRACT_ADDRESS = "8h1medfkQDtySnxAxrhYVZcxryPvsx9uZfKF2sPkpump"; // Enter your CA here
         const PUMP_FUN_URL = "https://pump.fun/coin/8h1medfkQDtySnxAxrhYVZcxryPvsx9uZfKF2sPkpump"; // Will be set as: https://pump.fun/coin/YOUR_CA_HERE
         
         // Create raining money bags
@@ -374,20 +377,8 @@
             window.open(PUMP_FUN_URL, '_blank');
         }
         
-        // Try to load the Jaylon image if it exists
+        // Initialize on page load
         window.addEventListener('load', () => {
-            const img = new Image();
-            img.onload = function() {
-                document.getElementById('jaylonImage').innerHTML = '';
-                document.getElementById('jaylonImage').style.backgroundImage = `url('/mnt/user-data/uploads/blackalon.png')`;
-                document.getElementById('jaylonImage').style.backgroundSize = 'cover';
-                document.getElementById('jaylonImage').style.backgroundPosition = 'center';
-            };
-            img.onerror = function() {
-                // Image not found, keep the text placeholder
-                console.log('Blackalon.png not found - please upload the image');
-            };
-            img.src = '/mnt/user-data/uploads/blackalon.png';
             
             // Load DexScreener chart embed
             const chartPlaceholder = document.getElementById('chartPlaceholder');
